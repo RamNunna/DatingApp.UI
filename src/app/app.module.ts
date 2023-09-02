@@ -17,6 +17,9 @@ import { SharedModule } from './_modules/shared.module';
 import { ErrorInterceptor } from './_interceptor/error.interceptor';
 import { NotFoundComponent } from './_errors/not-found/not-found.component';
 import { ServerErrorComponent } from './_errors/server-error/server-error.component';
+import { MemberCardComponent } from './members/member-card/member-card.component';
+import { JwtInterceptor } from './_interceptor/jwt.interceptor';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,8 @@ import { ServerErrorComponent } from './_errors/server-error/server-error.compon
     ListsComponent,
     MessagesComponent,
     ServerErrorComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    MemberCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,12 +42,18 @@ import { ServerErrorComponent } from './_errors/server-error/server-error.compon
     BrowserAnimationsModule,
     FormsModule,
     SharedModule,
+    TabsModule.forRoot(),
   ],
   providers: [
     AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
       multi: true,
     },
   ],
