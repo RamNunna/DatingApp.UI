@@ -12,8 +12,13 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     BsDropdownModule.forRoot(),
     ToastrModule.forRoot({ positionClass: 'toast-bottom-right' }),
     NgxGalleryModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
   ],
-  exports: [BsDropdownModule, ToastrModule, NgxGalleryModule, NgxSpinnerModule],
+  exports: [
+    BsDropdownModule,
+    ToastrModule,
+    NgxGalleryModule,
+    NgxSpinnerModule,
+  ],
 })
 export class SharedModule {}
